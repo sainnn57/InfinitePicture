@@ -1,0 +1,87 @@
+.inicrt {
+    display: none;
+}
+
+@media screen and (max-width: 992px){
+    .brand {
+        display: none;
+    }
+
+    .inicrt {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 570px){
+    .brand {
+        display: none;
+    }
+
+    .inihome {
+        display: none;
+    }
+
+    .inicrt {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 495px){
+    .brand {
+        display: none;
+    }
+
+    .inihome {
+        display: none;
+    }
+
+    .inicreate {
+        display: none;
+    }
+
+    .inicrt {
+        display: block;
+    }
+
+    .inisearch {
+        display: none;
+    }
+
+    .inisearch1 {
+        margin: 0px;
+    }
+
+    .form-control{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 361px){
+    .brand {
+        display: none;
+    }
+
+    .inihome {
+        display: none;
+    }
+
+    .inicreate {
+        display: none;
+    }
+
+    .inicrt {
+        display: block;
+    }
+
+    .inisearch {
+        display: none;
+    }
+
+    .inisearch1 {
+        margin: 0px;
+    }
+
+    .form-control{
+        width: 100px;
+    }
+}
