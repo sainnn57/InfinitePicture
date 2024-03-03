@@ -35,9 +35,9 @@
   </div>
 
   <div class="gallery-container">
-    <?php foreach ($album as $a) : ?>
-      <div class="gallery-item" onclick="redirectToPage('/album/<?= htmlspecialchars($a['id_album'], ENT_QUOTES, 'UTF-8') ?>')">
-        <img src="/cover_storage/<?= $a['cover'] ?>">
+    <?php foreach ($post as $p) : ?>
+      <div class="gallery-item" onclick="redirectToPage('/galeri/<?= htmlspecialchars($p['id_foto'], ENT_QUOTES, 'UTF-8') ?>')">
+        <img src="/foto_storage/<?= $p['lokasi_file'] ?>">
       </div>
     <?php endforeach; ?>
   </div>

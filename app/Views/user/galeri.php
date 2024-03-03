@@ -24,11 +24,13 @@ $AuthModel = new AuthModel();
                         <?php if ($liked) : ?>
                             <form action="/galeri/unlike/<?= $foto['id_foto']; ?>" method="post">
                                 <button class="fa-solid fa-heart fa-2xl uhah" style="color: red;"></button>
+                                <p class="text-white mt-3"><?= $jumlahLike; ?> Like</p>
                             </form>
                         <?php else : ?>
                             <form action="/galeri/like/<?= $foto['id_foto']; ?>" method="post">
                                 <button class="fa-solid fa-heart fa-2xl uhah" style="color: #ffffff;"></button>
                             </form>
+                            <p class="text-white mt-3"><?= $jumlahLike; ?> Like</p>
                         <?php endif; ?>
                     </div>
                     <div class="col-icon">
@@ -39,7 +41,7 @@ $AuthModel = new AuthModel();
                     <div class="col-icon">
                         <div class="col-icon">
                             <?php if ($ses == $foto['id_user']) : ?>
-                                <button class="fa-solid fa-bookmark fa-2xl uhah" style="color: #ffffff;"></button>
+                                <button class="fa-solid fa-bookmark fa-2xl uhah" style="color: #ffffff;" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -146,6 +148,48 @@ $AuthModel = new AuthModel();
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background: #07161b;">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Tambah Album</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-white">
+                <form action="/album/saveto/<?= $foto['id_foto']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="mb-2">
+                        <label for="saveto" class="form-label text-white">Tambahkan Ke Album</label>
+                        <select class="form-select" aria-label="Default select example" id="saveto" name="saveto">
+                            <option selected disabled>Pilih Album :</option>
+                            <?php foreach ($albumAdd as $a) : ?>
+                                <option value="<?= $a['id_album']; ?>"><?= $a['nama_album']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-create mb-3">Submit</button>
+                </form>
+            </div>
+            <div class="modal-body text-white">
+            <form action="/album/delfrom/<?= $foto['id_foto']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="mb-2">
+                        <label for="delfrom" class="form-label text-white">Hapus Dari Album</label>
+                        <select class="form-select" aria-label="Default select example" id="delfrom" name="delfrom">
+                            <option selected disabled>Pilih Album :</option>
+                            <?php foreach ($albumDel as $d) : ?>
+                                <option value="<?= $d['id_album']; ?>"><?= $d['nama_album']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-create mb-3">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

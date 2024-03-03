@@ -13,8 +13,12 @@ $AuthModel = new AuthModel();
 <body>
     <div class="container background">
         <d iv class="row">
-            <div class="col-info">
-                
+            <div class="col-foto mt-3">
+                <div class="casing-foto mx-auto">
+                    <img src="/foto_storage/<?= $foto['lokasi_file'] ?>" class="fotonya" alt="...">
+                </div>
+            </div>
+            <div class="col">
                 <div class="row mt-5">
                     <div class="col-pp">
                         <img src="/foto_storage/<?= $uploader['foto']; ?>" alt="" class="user-uploader d-flex justify-content-center">
@@ -30,63 +34,38 @@ $AuthModel = new AuthModel();
                             </h5>
                         <?php endif; ?>
                     </div>
+                </div>
+                <div class="container mt-5">
+                <!-- button pilih foto -->
+                <form action="/galeri/update/<?= $foto['id_foto']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="title" class="form-label text-white">Pilih Foto</label>
+                            <input class="form-control" type="file" id="foto" name="foto" onchange="previewImg()" hidden>
+                            <button type="button" class="button-file" onclick="document.getElementById('foto').click()">Pilih Foto</button>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-12">
+                            <label for="title" class="form-label text-white">Judul Foto</label>
+                            <input type="text" name="title" class="form-control" value="<?= $foto['judul_foto']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="title" class="form-label text-white">Deskripsi Foto</label>
+                            <input type="text" name="desk" class="form-control" value="<?= $foto['deskripsi_foto']; ?>" required>
+                        </div>  
+                    </div>
+                 
+                    <!-- button submit -->
                     <div class="row mt-3">
-                        <div class="container text-white">
-                            <h1><?= $foto['judul_foto'] ?></h1>
-                            <p><?= $foto['deskripsi_foto'] ?></p>
+                        <div class="col-12">
+                            <button type="submit" class="submit-create mb-5 mt-4">Submit</button>
                         </div>
                     </div>
-                </div>
-                
-
-                <div class="row mb-5">
-                    <div class="col-12 scrolling">
-                        <?php foreach ($komen as $k) : ?>
-                            <?php $user = $AuthModel->where('id_user', $k['id_user'])->first(); ?>
-                            <div class="container mt-2">
-                                <div class="row">
-                                  
-                                    <div class="col-komentar webe">
-                                        <?php if ($k['id_user'] == $foto['id_user']) : ?>
-                                            <button class="uhah" onclick="redirectToPage('/profile/<?= $user['username']; ?>')">
-                                                <h5 class="username-uploader text-white webe">
-                                                    @<?= $user['username']; ?> <span class="creator">CREATOR</span> :
-                                                </h5>
-                                            </button>
-                                        <?php else : ?>
-                                            <button class="uhah" onclick="redirectToPage('/profile/<?= $user['username']; ?>')">
-                                                <h5 class="username-uploader text-white webe">
-                                                    @<?= $user['username']; ?> :
-                                                </h5>
-                                            </button>
-                                        <?php endif; ?>
-                                        <h5 class="text-white webe">
-                                            <?= $k['isi_komentar']; ?>
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="container mt-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="text-white">BERIKAN KOMENTAR</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="/komen/save/<?= $foto['id_foto']; ?>" method="post" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" placeholder="Tulis Komentar" aria-label="Recipient's username" aria-describedby="button-addon2" name="isi_komentar">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
+            </div>
             </div>
         </d>
     </div>
